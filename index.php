@@ -125,7 +125,7 @@ if(!isset($_SESSION["userid"]) OR  !isset($_SESSION["nama"]))
 
 
 
-<body class="hold-transition skin-purple-light sidebar-mini" onload="myFunction()" style="margin:0;">
+<body class="hold-transition skin-purple-light sidebar-mini sidebar-collapse" onload="myFunction()" style="margin:0;">
 <div class="wrapper">
    <div id="loader"></div>  
   <header class="main-header">
