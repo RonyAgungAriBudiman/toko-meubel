@@ -27,7 +27,7 @@ if(!isset($_SESSION["userid"]) OR  !isset($_SESSION["nama"]))
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>GSR-RT02</title>
+  <title>TOKO MEUBEL</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 

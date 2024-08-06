@@ -7,9 +7,9 @@
 	<li><a href="index.php"><i class="fa fa-dashboard"></i> dashboard</a></li>
 	<li class="active"><?php echo acakacak("decode",$_GET["p"]) ?></li>
 	<li><button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal">Info </button>  &nbsp; 
-		<a href="index.php?m=<?php echo acakacak("encode","database/warga")?>&sm=<?php echo acakacak("encode","add")?>&p=<?php echo acakacak("decode",$_GET["p"]) ?>">
-			<button type="button" class="btn btn-primary"><i class="fa fa-plus"> </i> Warga</button></a>
-		<a href="download/excel/datawarga.php" target="_blank">
+		<a href="index.php?m=<?php echo acakacak("encode","datamaster/barang")?>&sm=<?php echo acakacak("encode","add")?>&p=<?php echo acakacak("decode",$_GET["p"]) ?>">
+			<button type="button" class="btn btn-primary"><i class="fa fa-plus"> </i> Barang</button></a>
+		<a href="download/excel/databarang.php" target="_blank">
 			<button type="button" name="cari" class="btn btn-success"><i class="fa fa-download"> </i> Excel</button></a>	
 		</li>
   </ol>
@@ -113,7 +113,7 @@
         </button>
       </div>
       <div class="modal-body">
-        Berisi data warga, dapat melakukan input data warga dan update data warga
+        Berisi data barang, dapat melakukan input data barang dan update data barang
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
