@@ -43,7 +43,20 @@
 
           	<div class="box box-primary">
             	<div class="box-header">
-            		
+					<div class="form-group row">
+						<form method="post">
+							<div class="col-md-2">
+								<input type="text" name="namabarang" id="namabarang" class="form-control" placeholder="Nama Barang">
+								<input type="text" name="barangid" id="barangid" class="form-control">
+								
+							</div>
+							
+							<div class="col-md-4">
+								<button type="submit" name="cari" class="btn btn-primary">Cari</button>
+							</div>
+									
+						</form>
+				    </div>            		
             	</div>
             	<!-- /.box-header -->
             	<div class="box-body">
@@ -51,37 +64,29 @@
               			<table id="example1" class="table table-bordered table-striped">
 		                <thead>
 		                <tr>
-		                    <th>Blok/No</th>
-		                    <th>Nama</th>
-		                    <th>Jenis Kelamin</th>
-		                    <th>Umur</th>
-							<?php if($_SESSION["level"] =="9") { ?>
+		                    <th>Nama Barang</th>
+		                    <th>Spesifikasi</th>
+		                    <th>Merk</th>
 		                    <th>Edit</th>
-							<?php } ?>
 		                </tr>
 		                </thead>
 		                <tbody>
 		                	<?php
 		                	$no=1;
-		                	$sql = "SELECT a.SeqWarga, a.Blok, a.No, a.Nama, a.JenisKelamin, a.TanggalLahir, concat(a.Blok,'/',a.No) as BlokNo 
-									FROM ms_warga a	
-									WHERE a.Nama != ''  ";			
+		                	$sql = "SELECT a.BarangID, a.NamaBarang, a.Merk, a.Spesifikasi
+									FROM ms_barang a	
+									WHERE a.NamaBarang != ''  ";			
 							$data = $sqlLib->select($sql);
 							foreach($data as $row)
 							{ 	
-								$datenow = date('Y-m-d');
-								$day     = ceil((abs(strtotime($row["TanggalLahir"]) - strtotime($datenow))) / (60 * 60 * 24));
-								$umur    = floor($day / 365);
-								
 								?>
 		                		<tr>
-									<td style="text-align: center;"><?php echo $row['BlokNo'] ?></td>
-									<td style="text-align: left;"><?php echo $row['Nama'] ?></td>
-									<td style="text-align: left;"><?php echo $row['JenisKelamin'] ?></td>
-									<td style="text-align: left;"><?php echo $umur ?> Thn</td>
+									<td style="text-align: center;"><?php echo $row['NamaBarang'] ?></td>
+									<td style="text-align: left;"><?php echo $row['Spesifikasi'] ?></td>
+									<td style="text-align: left;"><?php echo $row['Merk'] ?></td>
 									<?php if($_SESSION["level"] =="9") { ?>
 									<td style="text-align: center;">
-										<a href="index.php?m=<?php echo acakacak("encode","database/warga")?>&sm=<?php echo acakacak("encode","edit")?>&seqwarga=<?php echo $row["SeqWarga"]?>&p=<?php echo acakacak("decode",$_GET["p"]) ?>">
+										<a href="index.php?m=<?php echo acakacak("encode","datamaster/barang")?>&sm=<?php echo acakacak("encode","edit")?>&p=<?php echo acakacak("decode",$_GET["p"]) ?>">
 											<button type="button" class="btn btn-success"><i class="fa fa-edit"> </i> Edit</button>
 										</a>
 									</td>

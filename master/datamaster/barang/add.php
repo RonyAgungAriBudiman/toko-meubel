@@ -3,22 +3,39 @@
 if($_POST["tgllahir"]=="") $_POST["tgllahir"] = date("d-M-Y");
 if(isset($_POST["simpan"]))
 {
-	/*
-	$sql ="INSERT INTO ms_barang (Blok, No, Nama, JenisKelamin, TanggalLahir, Agama, Pekerjaan, HubunganKeluarga, NoKTP, UrutKel)
-			VALUES ('".$_POST['blok']."', '".$_POST['no']."', '".$_POST['nama']."', '".$_POST['jeniskelamin']."','".date("Y-m-d", strtotime($_POST['tgllahir']))."' , '".$_POST['agama']."', '".$_POST['pekerjaan']."'
-					, '".$_POST['hubkel']."', '".$_POST['noktp']."', '".$_POST['urutkel']."')";
-	$run =$sqlLib->insert($sql); 
-	if($run=="1")
+	$sql_1="SELECT SUBSTRING(BarangID,4,5) BarangID FROM ms_barang 
+        	Order By SUBSTRING(BarangID,4,5) Desc Limit 1";
+	$data_1=$sqlLib->select($sql_1);
+	$urut = strtok($data_1[0]['BarangID'], "0")+ 1;
+	$barangid = "BRG".str_pad($urut, 5, '0', STR_PAD_LEFT);
+
+	//echo $barangid.'-'.$urut;
+
+	//cek nama barang
+	$sql_2="SELECT NamaBarang FROM ms_barang WHERE NamaBarang = '".$_POST['namabarang']."' ";
+	$data_2=$sqlLib->select($sql_2);
+	if(COUNT($data_2)<1)
 	{
-	    $alert = '0'; 
-	    $note = "Proses simpan berhasil";
+		$sql ="INSERT INTO ms_barang (BarangID, NamaBarang, Spesifikasi, Merk, RecUser, CreateTime)
+			VALUES ('".$barangid."', '".$_POST['namabarang']."', '".$_POST['spesifikasi']."', '".$_POST['merk']."','".$_SESSION['userid']."','".date("Y-m-d H:i:s")."' )";
+		$run =$sqlLib->insert($sql); 
+		if($run=="1")
+		{
+			$alert = '0'; 
+			$note = "Proses simpan berhasil";
+		}
+		else
+		{
+			$alert = '1'; 
+			$note = "Proses simpan gagal";
+		}
+
+	}else{
+		$alert = '1'; 
+	    $note = "Proses simpan gagal, nama barang sudah ada";
 	}
-	else
-	{
-	    $alert = '1'; 
-	    $note = "Proses simpan gagal";
-	}
-	*/
+	
+	
 }
 ?>	
 
