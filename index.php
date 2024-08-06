@@ -31,7 +31,7 @@ if(!isset($_SESSION["userid"]) OR  !isset($_SESSION["nama"]))
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
-  <link rel="icon" type="image/png" href="images/favicon.ico">
+  <!-- <link rel="icon" type="image/png" href="images/favicon.ico"> -->
 
 
   <!-- Bootstrap 3.3.7 -->
@@ -132,9 +132,9 @@ if(!isset($_SESSION["userid"]) OR  !isset($_SESSION["nama"]))
     <!-- Logo -->
     <a href="index2.html" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>GSR</b></span>
+      <span class="logo-mini"><b>TM</b></span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>GSR RT02</b></span>
+      <span class="logo-lg"><b>TOKO MEUBEL</b></span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -144,13 +144,13 @@ if(!isset($_SESSION["userid"]) OR  !isset($_SESSION["nama"]))
       </a>
 
       <div class="navbar-custom-menu">
-        <ul class="nav navbar-nav">
+        <ul class="nav navbar-nav" style="margin-right:30px;">
           
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="images/user/<?php echo $_SESSION["image"]?>" class="user-image" alt="User Image">
-              <span class="hidden-xs"><?php echo $_SESSION["nama"]?></span>
+              <!-- <img src="images/user/<?php echo $_SESSION["image"]?>" class="user-image" alt="User Image"> -->
+              <span class="hidden-xs">Hai,&nbsp; <?php echo $_SESSION["nama"]?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
