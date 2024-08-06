@@ -1,0 +1,8 @@
+[14-Jun-2023 09:06:36 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function ParseDate() in /home/intc2668/public_html/gsr02/download/pdf/laporankeuangan.php:201
+Stack trace:
+#0 {main}
+  thrown in /home/intc2668/public_html/gsr02/download/pdf/laporankeuangan.php on line 201
+[14-Jun-2023 09:13:57 UTC] PHP Parse error:  syntax error, unexpected '$bln_desc' (T_VARIABLE), expecting ',' or ';' in /home/intc2668/public_html/gsr02/download/pdf/laporankeuangan.php on line 196
+[14-Jun-2023 09:48:18 UTC] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/intc2668/public_html/gsr02/plugins/html2pdf/html2pdf.class.php on line 2306
+[14-Jun-2023 09:48:23 UTC] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/intc2668/public_html/gsr02/plugins/html2pdf/html2pdf.class.php on line 2306
+[14-Jun-2023 09:50:25 UTC] PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/intc2668/public_html/gsr02/plugins/html2pdf/html2pdf.class.php on line 2306
