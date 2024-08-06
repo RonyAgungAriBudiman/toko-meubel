@@ -3,7 +3,8 @@
 if($_POST["tgllahir"]=="") $_POST["tgllahir"] = date("d-M-Y");
 if(isset($_POST["simpan"]))
 {
-	$sql ="INSERT INTO ms_warga (Blok, No, Nama, JenisKelamin, TanggalLahir, Agama, Pekerjaan, HubunganKeluarga, NoKTP, UrutKel)
+	/*
+	$sql ="INSERT INTO ms_barang (Blok, No, Nama, JenisKelamin, TanggalLahir, Agama, Pekerjaan, HubunganKeluarga, NoKTP, UrutKel)
 			VALUES ('".$_POST['blok']."', '".$_POST['no']."', '".$_POST['nama']."', '".$_POST['jeniskelamin']."','".date("Y-m-d", strtotime($_POST['tgllahir']))."' , '".$_POST['agama']."', '".$_POST['pekerjaan']."'
 					, '".$_POST['hubkel']."', '".$_POST['noktp']."', '".$_POST['urutkel']."')";
 	$run =$sqlLib->insert($sql); 
@@ -17,6 +18,7 @@ if(isset($_POST["simpan"]))
 	    $alert = '1'; 
 	    $note = "Proses simpan gagal";
 	}
+	*/
 }
 ?>	
 
