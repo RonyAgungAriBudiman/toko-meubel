@@ -2,12 +2,12 @@
 
 if ($_POST["tgllahir"] == "") $_POST["tgllahir"] = date("d-M-Y");
 if (isset($_POST["update"])) {
-	$sql = "UPDATE ms_supplier SET NamaSupplier = '" . $_POST['namasupplier'] . "',
+	$sql = "UPDATE ms_customer SET NamaCustomer = '" . $_POST['namacustomer'] . "',
 								Alamat = '" . $_POST['alamat'] . "',
 								NoTelp = '" . $_POST['notelp'] . "',
 								RecUser = '" . $_SESSION['userid'] . "',
 								UpdateTime = '" . date("Y-m-d H:i:s") . "'
-							WHERE SupplierID = '" . $_POST['supplierid'] . "'	 ";
+							WHERE CustomerID = '" . $_POST['customerid'] . "'	 ";
 	$run = $sqlLib->update($sql);
 
 	if ($run == "1") {
@@ -34,14 +34,15 @@ if (isset($_POST["update"])) {
 // }
 
 
-if ($_GET["supplierid"] != "") {
-	$sql_user = "SELECT SupplierID, NamaSupplier, Alamat, NoTelp, RecUser
-				FROM ms_supplier  WHERE SupplierID = '" . $_GET['supplierid'] . "' ";
+if ($_GET["customerid"] != "") {
+	$sql_user = "SELECT CustomerID, NamaCustomer, Alamat, NoTelp, NoKtp, RecUser
+				FROM ms_customer  WHERE CustomerID = '" . $_GET['customerid'] . "' ";
 	$data_user = $sqlLib->select($sql_user);
-	$_POST['namasupplier'] = $data_user[0]['NamaSupplier'];
+	$_POST['namacustomer'] = $data_user[0]['NamaCustomer'];
 	$_POST['alamat']   = $data_user[0]['Alamat'];
 	$_POST['notelp']  = $data_user[0]['NoTelp'];
-	$_POST['supplierid']  = $data_user[0]['SupplierID'];
+	$_POST['noktp']  = $data_user[0]['NoKtp'];
+	$_POST['customerid']  = $data_user[0]['CustomerID'];
 }
 
 
@@ -81,42 +82,55 @@ if ($_GET["supplierid"] != "") {
 		<div class="box box-primary">
 			<form method="post" id="form" autocomplete="off" class="form-horizontal" enctype="multipart/form-data">
 				<div class="box-body">
-					<div class="col-md-12">
-						<div class="form-group">							  
-							<div class="col-sm-6">
-								<label>Nama Supplier</label>
-								<input type="text" name="namasupplier" required="required" value="<?php echo $_POST["namasupplier"]?>" class="form-control" placeholder="" >
-							</div>
+				<div class="col-md-12">
+					<div class="form-group">							  
+						<div class="col-sm-6">
+							<label>Nama Customer</label>
+							<input type="text" name="namacustomer" required="required" value="<?php echo $_POST["namacustomer"]?>" class="form-control" placeholder="" >
+						</div>
 
-							<div class="col-sm-6">
-								&nbsp;
-							</div>
-						</div> 
-					</div>
-					<div class="col-md-12">
-						<div class="form-group">							  
-							<div class="col-sm-6">
-								<label>Alamat</label>
-								<input type="text" name="alamat" required="required" value="<?php echo $_POST["alamat"]?>" class="form-control" placeholder="" >
-							</div>
+						<div class="col-sm-6">
+							&nbsp;
+						</div>
+					</div> 
+				</div>
+				<div class="col-md-12">
+					<div class="form-group">							  
+						<div class="col-sm-6">
+							<label>Alamat</label>
+							<input type="text" name="alamat" required="required" value="<?php echo $_POST["alamat"]?>" class="form-control" placeholder="" >
+						</div>
 
-							<div class="col-sm-6">
-								&nbsp;
-							</div>
-						</div> 
-					</div>
-					<div class="col-md-12">
-						<div class="form-group">							  
-							<div class="col-sm-6">
-								<label>No Telp</label>
-								<input type="text" name="notelp" required="required" value="<?php echo $_POST["notelp"]?>" class="form-control" placeholder="" >
-							</div>
+						<div class="col-sm-6">
+							&nbsp;
+						</div>
+					</div> 
+				</div>
+				<div class="col-md-12">
+					<div class="form-group">							  
+						<div class="col-sm-6">
+							<label>No Telp</label>
+							<input type="text" name="notelp" required="required" value="<?php echo $_POST["notelp"]?>" class="form-control" placeholder="" >
+						</div>
 
-							<div class="col-sm-6">
-								&nbsp;
-							</div>
-						</div> 
-					</div>
+						<div class="col-sm-6">
+							&nbsp;
+						</div>
+					</div> 
+				</div>
+
+				<div class="col-md-12">
+					<div class="form-group">							  
+						<div class="col-sm-6">
+							<label>No KTP</label>
+							<input type="text" name="noktp" required="required" value="<?php echo $_POST["noktp"]?>" class="form-control" placeholder="" >
+						</div>
+
+						<div class="col-sm-6">
+							&nbsp;
+						</div>
+					</div> 
+				</div>
 
 					<div class="form-group">
 						<label class="col-sm-2 control-label"></label>
@@ -124,7 +138,7 @@ if ($_GET["supplierid"] != "") {
 							<input type="submit" class="btn btn-primary" name="update" Value="Update">
 							<button type="reset" name="batal" class="btn btn-danger">Batal</button>
 							<!-- <input type="submit" class="btn btn-danger" name="delete" Value="Delete"> -->
-							<input type="hidden" name="supplierid" value="<?php echo $_POST["supplierid"] ?>">
+							<input type="hidden" name="customerid" value="<?php echo $_POST["customerid"] ?>">
 						</div>
 					</div>
 				</div>
