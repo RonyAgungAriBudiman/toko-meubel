@@ -2,7 +2,7 @@
 
 if ($_POST["tgllahir"] == "") $_POST["tgllahir"] = date("d-M-Y");
 if (isset($_POST["update"])) {
-	$sql = "UPDATE ms_warga SET Blok = '" . $_POST['blok'] . "',
+	$sql = "UPDATE ms_barang SET Blok = '" . $_POST['blok'] . "',
 								No = '" . $_POST['no'] . "',
 								Nama = '" . $_POST['nama'] . "',
 								JenisKelamin = '" . $_POST['jeniskelamin'] . "',
@@ -12,7 +12,7 @@ if (isset($_POST["update"])) {
 								HubunganKeluarga = '" . $_POST['hubkel'] . "',
 								UrutKel = '" . $_POST['urutkel'] . "',
 								TanggalLahir = '" . date("Y-m-d", strtotime($_POST['tgllahir'])) . "'
-							WHERE SeqWarga = '" . $_POST['seqwarga'] . "'	 ";
+							WHERE BarangID = '" . $_POST['barangid'] . "'	 ";
 	$run = $sqlLib->update($sql);
 
 	if ($run == "1") {
