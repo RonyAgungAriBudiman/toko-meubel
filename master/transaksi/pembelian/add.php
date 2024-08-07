@@ -62,11 +62,21 @@ if($_POST["nopo"]=="")
 		  			<div class="col-md-12">	
 		  					
 							<div class="form-group">
-							  <label class="col-sm-3 control-label">Nama Barang</label>
-							  <div class="col-sm-6">
-                                <input type="text" name="namabarang" id="namabarang" class="form-control" value="<?php echo $_POST['namabarang'] ?>" placeholder="Nama Barang">
-							    <input type="hidden" name="barangid" id="barangid" class="form-control" value="<?php echo $_POST['barangid'] ?>">
-							  </div>
+							    <label class="col-sm-3 control-label">Nama Barang</label>
+							    <div class="col-sm-6">
+                                    <select name="barangid" id="barangid" class="form-control">
+                                    <option value="">Pilih Barang</option>
+                                    <?php
+                                    $sql_2 = "SELECT DISTINCT BarangID, NamaBarang, Spesifikasi FROM ms_barang ";
+                                    $data_2 = $sqlLib->select($sql_2);
+                                    foreach ($data_2 as $row_2) {
+                                    ?><option value="<?php echo $row_2['BarangID'] ?>" <?php if ($_POST['barangid'] == $row_2['BarangID']) {
+                                                                                        echo "selected";
+                                                                                    } ?>><?php echo $row_2['NamaBarang'] ?> <?php echo $row_2['Spesifikasi'] ?></option> <?php
+                                                                                                                            }
+                                                                                                                                ?>
+                                    </select>
+							    </div>
 							</div> 
 
 							<div class="form-group">

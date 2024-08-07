@@ -2,7 +2,7 @@
 if ($_POST["page"] == "") $_POST["page"] = 1;
 
 $kondisi = "";
-if ($_POST['namacustomer'] != "" and $_POST['customerid'] != "") $kondisi .= " AND a.CustomerID ='" . $_POST['customerid'] . "'";
+if ($_POST['customerid'] != "") $kondisi .= " AND a.CustomerID ='" . $_POST['customerid'] . "'";
 
 $sql_count = "SELECT COUNT(a.CustomerID) as JmlData
 				FROM ms_customer a	
