@@ -66,9 +66,6 @@ if (!isset($_SESSION["userid"]) or  !isset($_SESSION["nama"])) {
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
-  <link rel="stylesheet" href="dist/css/jquery-ui.css" />
-  <script src="dist/js/jquery-1.12.4.js"></script>
-  <script src="dist/js/jquery-ui.js"></script>
   <style>
     /* Center the loader */
     #loaderx {
@@ -223,7 +220,7 @@ if (!isset($_SESSION["userid"]) or  !isset($_SESSION["nama"])) {
 
 
 
-    <!-- jQuery 3 
+    <!-- jQuery 3 -->
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <!-- jQuery UI 1.11.4 -->
     <script src="bower_components/jquery-ui/jquery-ui.min.js"></script>

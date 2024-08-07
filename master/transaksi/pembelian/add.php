@@ -1,5 +1,8 @@
 
-<?php 
+<?php
+
+if($_POST["tanggal"]=="") $_POST["tanggal"] = date("d-M-Y");
+if($_POST["estimasi"]=="") $_POST["estimasi"] = date("d-M-Y"); 
 if($_POST["nopo"]=="")
 {
     $sql_1="SELECT SUBSTRING(BarangID,4,5) BarangID FROM ms_barang 
@@ -20,7 +23,9 @@ if($_POST["nopo"]=="")
 }
 ?>
 
-?>
+<link rel="stylesheet" href="dist/css/jquery-ui.css" />
+  <script src="dist/js/jquery-1.12.4.js"></script>
+  <script src="dist/js/jquery-ui.js"></script>
 
 <div class="header">
   <h1>
@@ -77,7 +82,7 @@ if($_POST["nopo"]=="")
 							  <label class="col-sm-3 control-label">Qty</label>
 							  <div class="col-sm-6">
 								<input type="number" name="qty" id="Qty" required="required" value="<?php echo $_POST["qty"]?>" class="form-control" placeholder="0" >
-								<input type="hidden" name="nopo" value="<?php echo $_POST["nopo"]?>"  class="form-control" placeholder="" readonly>
+								<input type="hidden" name="nopo_tmp" value="<?php echo $_POST["nopo"]?>"  class="form-control" placeholder="" readonly>
 							  </div>
 							</div> 
 
@@ -108,9 +113,9 @@ if($_POST["nopo"]=="")
 		  			<div class="col-md-12">
 		  					<div class="form-group">
 							  <div class="col-sm-6">
-								  <label class="col-sm-4 control-label">No Order</label>
+								  <label class="col-sm-4 control-label">No PO</label>
 								  <div class="col-sm-8">
-									<input type="text" name="orderno" value="<?php echo $_POST["orderno"]?>"  class="form-control" placeholder="" readonly>
+									<input type="text" name="nopo" value="<?php echo $_POST["nopo"]?>"  class="form-control" placeholder="" readonly>
 									<input type="hidden" name="urut" value="<?php echo $_POST["urut"]?>"  class="form-control" placeholder="" readonly>
 								  </div>
 							   </div>  
@@ -120,6 +125,13 @@ if($_POST["nopo"]=="")
 									<input type="text" name="estimasi" value="<?php echo $_POST["estimasi"]?>" class="form-control tgl pull-right" >
 								  </div>
 							   </div>  
+                               <div class="form-group">
+							  <label class="col-sm-2 control-label">TANGGAL</label>
+							  <div class="col-sm-5">
+							  	<input type="text" name="tanggal" value="<?php echo $_POST["tanggal"]?>" class="form-control tgl pull-right" >
+								
+							  </div>
+							</div> 
 							</div>
 
 							<div class="form-group">								
