@@ -155,9 +155,9 @@ if (!isset($_SESSION["userid"]) or  !isset($_SESSION["nama"])) {
       <!-- Logo -->
       <a href="index2.html" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini"><b>TM</b></span>
+        <span class="logo-mini"><b>LF</b></span>
         <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg"><b>TOKO MEUBEL</b></span>
+        <span class="logo-lg"><b>LELA FURNITURE</b></span>
       </a>
       <!-- Header Navbar: style can be found in header.less -->
       <nav class="navbar navbar-static-top">
