@@ -2,16 +2,11 @@
 
 if ($_POST["tgllahir"] == "") $_POST["tgllahir"] = date("d-M-Y");
 if (isset($_POST["update"])) {
-	$sql = "UPDATE ms_barang SET Blok = '" . $_POST['blok'] . "',
-								No = '" . $_POST['no'] . "',
-								Nama = '" . $_POST['nama'] . "',
-								JenisKelamin = '" . $_POST['jeniskelamin'] . "',
-								Agama = '" . $_POST['agama'] . "',
-								NoKTP = '" . $_POST['noktp'] . "',
-								Pekerjaan = '" . $_POST['pekerjaan'] . "',
-								HubunganKeluarga = '" . $_POST['hubkel'] . "',
-								UrutKel = '" . $_POST['urutkel'] . "',
-								TanggalLahir = '" . date("Y-m-d", strtotime($_POST['tgllahir'])) . "'
+	$sql = "UPDATE ms_barang SET NamaBarang = '" . $_POST['namabarang'] . "',
+								Spesifikasi = '" . $_POST['spesifikasi'] . "',
+								Merk = '" . $_POST['merk'] . "',
+								RecUser = '" . $_SESSION['userid'] . "',
+								UpdateTime = '" . date("Y-m-d H:i:s") . "'
 							WHERE BarangID = '" . $_POST['barangid'] . "'	 ";
 	$run = $sqlLib->update($sql);
 
@@ -24,19 +19,19 @@ if (isset($_POST["update"])) {
 	}
 }
 
-if (isset($_POST["delete"])) {
-	$sql_del = "DELETE FROM ms_warga 
-				WHERE SeqWarga = '" . $_POST['seqwarga'] . "'	 ";
-	$run 	= $sqlLib->delete($sql_del);
+// if (isset($_POST["delete"])) {
+// 	$sql_del = "DELETE FROM ms_barang 
+// 				WHERE BarangID = '" . $_POST['barangid'] . "'	 ";
+// 	$run 	= $sqlLib->delete($sql_del);
 
-	if ($run == "1") {
-		$alert = '0';
-		$note = "Proses delete berhasil";
-	} else {
-		$alert = '1';
-		$note = "Proses delete gagal";
-	}
-}
+// 	if ($run == "1") {
+// 		$alert = '0';
+// 		$note = "Proses delete berhasil";
+// 	} else {
+// 		$alert = '1';
+// 		$note = "Proses delete gagal";
+// 	}
+// }
 
 
 if ($_GET["barangid"] != "") {
