@@ -2,12 +2,12 @@
 
 if ($_POST["tgllahir"] == "") $_POST["tgllahir"] = date("d-M-Y");
 if (isset($_POST["update"])) {
-	$sql = "UPDATE ms_barang SET NamaBarang = '" . $_POST['namabarang'] . "',
-								Spesifikasi = '" . $_POST['spesifikasi'] . "',
-								Merk = '" . $_POST['merk'] . "',
+	$sql = "UPDATE ms_supplier SET NamaSupplier = '" . $_POST['namasupplier'] . "',
+								Alamat = '" . $_POST['alamat'] . "',
+								NoTelp = '" . $_POST['notelp'] . "',
 								RecUser = '" . $_SESSION['userid'] . "',
 								UpdateTime = '" . date("Y-m-d H:i:s") . "'
-							WHERE BarangID = '" . $_POST['barangid'] . "'	 ";
+							WHERE SupplierID = '" . $_POST['supplierid'] . "'	 ";
 	$run = $sqlLib->update($sql);
 
 	if ($run == "1") {
@@ -34,14 +34,14 @@ if (isset($_POST["update"])) {
 // }
 
 
-if ($_GET["barangid"] != "") {
-	$sql_user = "SELECT BarangID, NamaBarang, Spesifikasi, Merk, RecUser, CreateTime
-				FROM ms_barang a WHERE a.BarangID = '" . $_GET['barangid'] . "' ";
+if ($_GET["supplierid"] != "") {
+	$sql_user = "SELECT SupplierID, NamaSupplier, Alamat, NoTelp, RecUser
+				FROM ms_supplier a WHERE a.SupplierID = '" . $_GET['supplierid'] . "' ";
 	$data_user = $sqlLib->select($sql_user);
-	$_POST['namabarang'] = $data_user[0]['NamaBarang'];
-	$_POST['spesifikasi']   = $data_user[0]['Spesifikasi'];
-	$_POST['merk']  = $data_user[0]['Merk'];
-	$_POST['barangid']  = $data_user[0]['BarangID'];
+	$_POST['namasupplier'] = $data_user[0]['NamaSupplier'];
+	$_POST['alamat']   = $data_user[0]['Alamat'];
+	$_POST['Notelp']  = $data_user[0]['NoTelp'];
+	$_POST['supplierid']  = $data_user[0]['BarangID'];
 }
 
 
@@ -82,40 +82,40 @@ if ($_GET["barangid"] != "") {
 			<form method="post" id="form" autocomplete="off" class="form-horizontal" enctype="multipart/form-data">
 				<div class="box-body">
 					<div class="col-md-12">
-						<div class="form-group">
+						<div class="form-group">							  
 							<div class="col-sm-6">
-								<label>Nama Barang</label>
-								<input type="text" name="namabarang" required="required" value="<?php echo $_POST["namabarang"] ?>" class="form-control" placeholder="">
+								<label>Nama Supplier</label>
+								<input type="text" name="namasupplier" required="required" value="<?php echo $_POST["namasupplier"]?>" class="form-control" placeholder="" >
 							</div>
 
 							<div class="col-sm-6">
 								&nbsp;
 							</div>
-						</div>
+						</div> 
 					</div>
 					<div class="col-md-12">
-						<div class="form-group">
+						<div class="form-group">							  
 							<div class="col-sm-6">
-								<label>Spesifikasi</label>
-								<input type="text" name="spesifikasi" required="required" value="<?php echo $_POST["spesifikasi"] ?>" class="form-control" placeholder="">
+								<label>Alamat</label>
+								<input type="text" name="alamat" required="required" value="<?php echo $_POST["alamat"]?>" class="form-control" placeholder="" >
 							</div>
 
 							<div class="col-sm-6">
 								&nbsp;
 							</div>
-						</div>
+						</div> 
 					</div>
 					<div class="col-md-12">
-						<div class="form-group">
+						<div class="form-group">							  
 							<div class="col-sm-6">
-								<label>Merk</label>
-								<input type="text" name="merk" required="required" value="<?php echo $_POST["merk"] ?>" class="form-control" placeholder="">
+								<label>No Telp</label>
+								<input type="text" name="notelp" required="required" value="<?php echo $_POST["notelp"]?>" class="form-control" placeholder="" >
 							</div>
 
 							<div class="col-sm-6">
 								&nbsp;
 							</div>
-						</div>
+						</div> 
 					</div>
 
 					<div class="form-group">
@@ -124,7 +124,7 @@ if ($_GET["barangid"] != "") {
 							<input type="submit" class="btn btn-primary" name="update" Value="Update">
 							<button type="reset" name="batal" class="btn btn-danger">Batal</button>
 							<!-- <input type="submit" class="btn btn-danger" name="delete" Value="Delete"> -->
-							<input type="hidden" name="barangid" value="<?php echo $_POST["barangid"] ?>">
+							<input type="hidden" name="supplierid" value="<?php echo $_POST["supplierid"] ?>">
 						</div>
 					</div>
 				</div>
