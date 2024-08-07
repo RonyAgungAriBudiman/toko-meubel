@@ -144,9 +144,9 @@ if (!isset($_SESSION["userid"]) or  !isset($_SESSION["nama"])) {
 </head>
 
 
-<link rel="stylesheet" href="dist/css/jquery-ui.css" />
+  <!-- <link rel="stylesheet" href="dist/css/jquery-ui.css" />
   <script src="dist/js/jquery-1.12.4.js"></script>
-  <script src="dist/js/jquery-ui.js"></script>  
+  <script src="dist/js/jquery-ui.js"></script>   -->
 
 
 
@@ -223,7 +223,7 @@ if (!isset($_SESSION["userid"]) or  !isset($_SESSION["nama"])) {
       </section>
     </div>
 
-    <!-- jQuery 3 
+    <!-- jQuery 3 -->
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <!-- jQuery UI 1.11.4 -->
     <script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
@@ -273,7 +273,14 @@ if (!isset($_SESSION["userid"]) or  !isset($_SESSION["nama"])) {
 
     <script>
       $(function() {
-        $('#example1').DataTable()
+        $('#example1').DataTable({
+          'paging': false,
+          'lengthChange': true,
+          'searching': false,
+          'ordering': false,
+          'info': true,
+          'autoWidth': true
+        })
         $('#example2').DataTable({
           'paging': true,
           'lengthChange': false,

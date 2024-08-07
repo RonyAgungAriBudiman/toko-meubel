@@ -2,7 +2,7 @@
 if ($_POST["page"] == "") $_POST["page"] = 1;
 
 $kondisi = "";
-if ($_POST['namabarang'] != "" and $_POST['barangid'] != "") $kondisi .= " AND a.BarangID ='" . $_POST['barangid'] . "'";
+if ($_POST['barangid'] != "") $kondisi .= " AND a.BarangID ='" . $_POST['barangid'] . "'";
 if ($_POST['merk'] != "") $kondisi .= " AND a.Merk ='" . $_POST['merk'] . "'";
 
 $sql_count = "SELECT COUNT(a.BarangID) as JmlData
@@ -70,8 +70,19 @@ $data = $sqlLib->select($sql);
 				<div class="form-group row">
 					<form method="post">
 						<div class="col-md-2">
-							<input type="text" name="namabarang" id="namabarang" class="form-control" value="<?php echo $_POST['namabarang'] ?>" placeholder="Nama Barang">
-							<input type="hidden" name="barangid" id="barangid" class="form-control" value="<?php echo $_POST['barangid'] ?>">
+							<select name="barangid" id="barangid" class="form-control">
+								<option value="">Pilih Barang</option>
+								<?php
+								$sql_2 = "SELECT DISTINCT BarangID, NamaBarang, Spesifikasi FROM ms_barang ";
+								$data_2 = $sqlLib->select($sql_2);
+								foreach ($data_2 as $row_2) {
+								?><option value="<?php echo $row_2['BarangID'] ?>" <?php if ($_POST['barangid'] == $row_2['BarangID']) {
+																					echo "selected";
+																				} ?>><?php echo $row_2['NamaBarang'] ?> <?php echo $row_2['Spesifikasi'] ?></option> <?php
+																														}
+																															?>
+							</select>
+
 						</div>
 						<div class="col-md-2">
 							<select name="merk" id="merk" class="form-control">
