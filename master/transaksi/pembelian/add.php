@@ -5,12 +5,6 @@ if($_POST["tanggal"]=="") $_POST["tanggal"] = date("d-M-Y");
 if($_POST["estimasi"]=="") $_POST["estimasi"] = date("d-M-Y"); 
 if($_POST["nopo"]=="")
 {
-    $sql_1="SELECT SUBSTRING(BarangID,4,5) BarangID FROM ms_barang 
-        	Order By SUBSTRING(BarangID,4,5) Desc Limit 1";
-	$data_1=$sqlLib->select($sql_1);
-	$urut = strtok($data_1[0]['BarangID'], "0")+ 1;
-	$barangid = "BRG".str_pad($urut, 5, '0', STR_PAD_LEFT);
-
     $sql_1="SELECT SUBSTRING(NoPO,9,5) NoPO FROM ms_po 
             WHERE YEAR(TanggalPO) = '".date("Y")."'
         	Order By SUBSTRING(NoPO,9,5) Desc Limit 1";
@@ -23,9 +17,6 @@ if($_POST["nopo"]=="")
 }
 ?>
 
-<link rel="stylesheet" href="dist/css/jquery-ui.css" />
-  <script src="dist/js/jquery-1.12.4.js"></script>
-  <script src="dist/js/jquery-ui.js"></script>
 
 <div class="header">
   <h1>
@@ -125,12 +116,7 @@ if($_POST["nopo"]=="")
 									<input type="text" name="estimasi" value="<?php echo $_POST["estimasi"]?>" class="form-control tgl pull-right" >
 								  </div>
 							   </div>  
-                               <div class="form-group">
-							  <label class="col-sm-2 control-label">TANGGAL</label>
-							  <div class="col-sm-5">
-							  	<input type="text" name="tanggal" value="<?php echo $_POST["tanggal"]?>" class="form-control tgl pull-right" >
-								
-							  </div>
+                               
 							</div> 
 							</div>
 
