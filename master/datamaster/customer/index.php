@@ -69,8 +69,18 @@ $data = $sqlLib->select($sql);
 				<div class="form-group row">
 					<form method="post">
 						<div class="col-md-2">
-							<input type="text" name="namacustomer" id="namacustomer" class="form-control" value="<?php echo $_POST['namacustomer'] ?>" placeholder="Nama Supplier">
-							<input type="hidden" name="customerid" id="customerid" class="form-control" value="<?php echo $_POST['customerid'] ?>">
+							<select name="customerid" id="customerid" class="form-control">
+								<option value="">Pilih Customer</option>
+								<?php
+								$sql_2 = "SELECT DISTINCT CustomerID, NamaCustomer FROM ms_customer ";
+								$data_2 = $sqlLib->select($sql_2);
+								foreach ($data_2 as $row_2) {
+								?><option value="<?php echo $row_2['CustomerID'] ?>" <?php if ($_POST['customerid'] == $row_2['CustomerID']) {
+																					echo "selected";
+																				} ?>><?php echo $row_2['NamaCustomer'] ?></option> <?php
+																														}
+																															?>
+							</select>
 						</div>
 						
 						<div class="col-md-2">
