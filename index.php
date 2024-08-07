@@ -1,29 +1,26 @@
 <?php
 session_start();
-
-include_once "sqlLib.php"; $sqlLib = new sqlLib();
-if(!isset($_SESSION["userid"]) OR  !isset($_SESSION["nama"])) 
-{
-  if($_COOKIE["userid"]!="" AND $_COOKIE["nama"]!="")
-  {
+//error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
+include_once "sqlLib.php";
+$sqlLib = new sqlLib();
+if (!isset($_SESSION["userid"]) or  !isset($_SESSION["nama"])) {
+  if ($_COOKIE["userid"] != "" and $_COOKIE["nama"] != "") {
 
     $_SESSION["userid"]   = $_COOKIE["userid"];
     $_SESSION["nama"]     = $_COOKIE["nama"];
     $_SESSION["level"]    = $_COOKIE["level"];
     $_SESSION["image"]    = $_COOKIE["image"];
 
-    if($_SESSION["image"]=="")
-    {
+    if ($_SESSION["image"] == "") {
       $_SESSION["image"] = "nobody.png";
     }
-   
-  }
-  else header("Location:signin.php");
+  } else header("Location:signin.php");
 }
 ?>
 
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -69,9 +66,11 @@ if(!isset($_SESSION["userid"]) OR  !isset($_SESSION["nama"]))
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
-
+  <link rel="stylesheet" href="dist/css/jquery-ui.css" />
+  <script src="dist/js/jquery-1.12.4.js"></script>
+  <script src="dist/js/jquery-ui.js"></script>
   <style>
-  /* Center the loader */
+    /* Center the loader */
     #loaderx {
       position: absolute;
       left: 50%;
@@ -88,13 +87,23 @@ if(!isset($_SESSION["userid"]) OR  !isset($_SESSION["nama"]))
     }
 
     @-webkit-keyframes spin {
-      0% { -webkit-transform: rotate(0deg); }
-      100% { -webkit-transform: rotate(360deg); }
+      0% {
+        -webkit-transform: rotate(0deg);
+      }
+
+      100% {
+        -webkit-transform: rotate(360deg);
+      }
     }
 
     @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
     }
 
     /* Add animation to "page content" */
@@ -107,219 +116,232 @@ if(!isset($_SESSION["userid"]) OR  !isset($_SESSION["nama"]))
     }
 
     @-webkit-keyframes animatebottom {
-      from { bottom:-100px; opacity:0 } 
-      to { bottom:0px; opacity:1 }
+      from {
+        bottom: -100px;
+        opacity: 0
+      }
+
+      to {
+        bottom: 0px;
+        opacity: 1
+      }
     }
 
-    @keyframes animatebottom { 
-      from{ bottom:-100px; opacity:0 } 
-      to{ bottom:0; opacity:1 }
+    @keyframes animatebottom {
+      from {
+        bottom: -100px;
+        opacity: 0
+      }
+
+      to {
+        bottom: 0;
+        opacity: 1
+      }
     }
 
     #myDiv {
       display: none;
       /*text-align: center;*/
     }
-  </style> 
+  </style>
 </head>
 
 
 
 <body class="hold-transition skin-purple-light sidebar-mini sidebar-collapse" onload="myFunction()" style="margin:0;">
-<div class="wrapper">
-   <div id="loader"></div>  
-  <header class="main-header">
-    <!-- Logo -->
-    <a href="index2.html" class="logo">
-      <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>TM</b></span>
-      <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>TOKO MEUBEL</b></span>
-    </a>
-    <!-- Header Navbar: style can be found in header.less -->
-    <nav class="navbar navbar-static-top">
-      <!-- Sidebar toggle button-->
-      <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-        <span class="sr-only">Toggle navigation</span>
+  <div class="wrapper">
+    <div id="loader"></div>
+    <header class="main-header">
+      <!-- Logo -->
+      <a href="index2.html" class="logo">
+        <!-- mini logo for sidebar mini 50x50 pixels -->
+        <span class="logo-mini"><b>TM</b></span>
+        <!-- logo for regular state and mobile devices -->
+        <span class="logo-lg"><b>TOKO MEUBEL</b></span>
       </a>
+      <!-- Header Navbar: style can be found in header.less -->
+      <nav class="navbar navbar-static-top">
+        <!-- Sidebar toggle button-->
+        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+          <span class="sr-only">Toggle navigation</span>
+        </a>
 
-      <div class="navbar-custom-menu">
-        <ul class="nav navbar-nav" style="margin-right:30px;">
-          
-          <!-- User Account: style can be found in dropdown.less -->
-          <li class="dropdown user user-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <!-- <img src="images/user/<?php echo $_SESSION["image"]?>" class="user-image" alt="User Image"> -->
-              <span class="hidden-xs">Hai,&nbsp; <?php echo $_SESSION["nama"]?></span>
-            </a>
-            <ul class="dropdown-menu">
-              <!-- User image -->
-              <li class="user-header">
-                <img src="images/user/<?php echo $_SESSION["image"]?>" class="img-circle" alt="User Image">
+        <div class="navbar-custom-menu">
+          <ul class="nav navbar-nav" style="margin-right:30px;">
 
-                <p>
-                  <?php echo $_SESSION["nama"]?>
-                </p>
-              </li>
-              
-              <!-- Menu Footer-->
-              <li class="user-footer">
-                <div class="pull-left">
-                  <a href="index.php?m=<?php echo acakacak("encode","setting/cp")?>&p=<?php echo acakacak("encode","Change Password")?>" class="btn btn-default btn-flat">Ganti Password</a>
-                </div>
-                <div class="pull-right">
-                  <a href="signout.php" class="btn btn-default btn-flat">Sign out</a>
-                </div>
-              </li>
-            </ul>
-          </li>
-          <!-- Control Sidebar Toggle Button -->
-          
-        </ul>
-      </div>
-    </nav>
-  </header>
-  <?php 
+            <!-- User Account: style can be found in dropdown.less -->
+            <li class="dropdown user user-menu">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <!-- <img src="images/user/<?php echo $_SESSION["image"] ?>" class="user-image" alt="User Image"> -->
+                <span class="hidden-xs">Hai,&nbsp; <?php echo $_SESSION["nama"] ?></span>
+              </a>
+              <ul class="dropdown-menu">
+                <!-- User image -->
+                <li class="user-header">
+                  <img src="images/user/<?php echo $_SESSION["image"] ?>" class="img-circle" alt="User Image">
+
+                  <p>
+                    <?php echo $_SESSION["nama"] ?>
+                  </p>
+                </li>
+
+                <!-- Menu Footer-->
+                <li class="user-footer">
+                  <div class="pull-left">
+                    <a href="index.php?m=<?php echo acakacak("encode", "setting/cp") ?>&p=<?php echo acakacak("encode", "Change Password") ?>" class="btn btn-default btn-flat">Ganti Password</a>
+                  </div>
+                  <div class="pull-right">
+                    <a href="signout.php" class="btn btn-default btn-flat">Sign out</a>
+                  </div>
+                </li>
+              </ul>
+            </li>
+            <!-- Control Sidebar Toggle Button -->
+
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <?php
     include "menu.php"; ?>
 
-   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-   <!-- Main content -->
-    <section class="content">
-       <?php 
-        if($_GET["m"]=="")
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Main content -->
+      <section class="content">
+        <?php
+        if ($_GET["m"] == "")
           include "master/dashboard/index.php";
-        else if ($_GET["m"]!="" AND $_GET["sm"]!="")
-          include "master/".acakacak("decode",$_GET["m"])."/".acakacak("decode",$_GET["sm"]).".php"; 
-        else if ($_GET["m"]!="")
-          include "master/".acakacak("decode",$_GET["m"])."/index.php";
+        else if ($_GET["m"] != "" and $_GET["sm"] != "")
+          include "master/" . acakacak("decode", $_GET["m"]) . "/" . acakacak("decode", $_GET["sm"]) . ".php";
+        else if ($_GET["m"] != "")
+          include "master/" . acakacak("decode", $_GET["m"]) . "/index.php";
         else include "master/dashboard/index.php";
         ?>
-    </section>
-  </div>
-  
+      </section>
+    </div>
 
 
-<!-- jQuery 3 -->
-<script src="bower_components/jquery/dist/jquery.min.js"></script>
-<!-- jQuery UI 1.11.4 -->
-<script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
-<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-<script>
-  $.widget.bridge('uibutton', $.ui.button);
-</script>
-<!-- Bootstrap 3.3.7 -->
-<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- Morris.js charts -->
-<script src="bower_components/raphael/raphael.min.js"></script>
-<script src="bower_components/morris.js/morris.min.js"></script>
-<!-- Sparkline -->
-<script src="bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
-<!-- jvectormap -->
-<script src="plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
-<script src="plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
-<!-- jQuery Knob Chart -->
-<script src="bower_components/jquery-knob/dist/jquery.knob.min.js"></script>
-<!-- daterangepicker -->
-<script src="bower_components/moment/min/moment.min.js"></script>
-<script src="bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
-<!-- datepicker -->
-<script src="bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-<!-- Bootstrap WYSIHTML5 -->
-<script src="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
-<!-- Slimscroll -->
-<script src="bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-<!-- FastClick -->
-<script src="bower_components/fastclick/lib/fastclick.js"></script>
-<!-- AdminLTE App -->
-<script src="dist/js/adminlte.min.js"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="dist/js/pages/dashboard.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="dist/js/demo.js"></script>
 
-<!-- DataTables -->
-<script src="bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-<!-- page script -->
+    <!-- jQuery 3 
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+      $.widget.bridge('uibutton', $.ui.button);
+    </script>
+    <!-- Bootstrap 3.3.7 -->
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- Morris.js charts -->
+    <script src="bower_components/raphael/raphael.min.js"></script>
+    <script src="bower_components/morris.js/morris.min.js"></script>
+    <!-- Sparkline -->
+    <script src="bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
+    <!-- jvectormap -->
+    <script src="plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+    <script src="plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="bower_components/jquery-knob/dist/jquery.knob.min.js"></script>
+    <!-- daterangepicker -->
+    <script src="bower_components/moment/min/moment.min.js"></script>
+    <script src="bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <!-- datepicker -->
+    <script src="bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+    <!-- Bootstrap WYSIHTML5 -->
+    <script src="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+    <!-- Slimscroll -->
+    <script src="bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+    <!-- FastClick -->
+    <script src="bower_components/fastclick/lib/fastclick.js"></script>
+    <!-- AdminLTE App -->
+    <script src="dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="dist/js/pages/dashboard.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="dist/js/demo.js"></script>
 
-<script>
-            
-             $('#myModal').modal('show');
-              
-</script>
+    <!-- DataTables -->
+    <script src="bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <!-- page script -->
 
-
-<script>
-  $(function () {
-    $('#example1').DataTable()
-    $('#example2').DataTable({
-      'paging'      : true,
-      'lengthChange': false,
-      'searching'   : false,
-      'ordering'    : true,
-      'info'        : true,
-      'autoWidth'   : false
-    })
-    $('#example3').DataTable({
-      'paging'      : false,
-      'scrollY': 300
-    })
-    $('#example4').DataTable({
-      'paging'      : false,
-      'searching'   : false,
-      'scrollY': 300
-
-    })
-    $('#example5').DataTable({
-      'paging'      : false,
-      'searching'   : false,
-      'ordering'    : false,
-      'scrollY': 300
-
-    })
-    $('#example6').DataTable({
-      'paging'      : false,
-      'lengthChange': true,
-      'searching'   : false,
-      'ordering'    : false,
-      'info'        : true,
-      'autoWidth'   : true
-    })
-  })
-</script>
+    <script>
+      $('#myModal').modal('show');
+    </script>
 
 
-<script type="text/javascript">
-$(function () {
-  //Date picker
-  $('.tgl').datepicker({
-    format: 'dd-M-yyyy',
-    autoclose: true
-  }),
-  $('.timepicker').timepicker({
-    showInputs: false,
-    timeFormat: 'HH:mm:ss',
-    })
-})
-</script>
+    <script>
+      $(function() {
+        $('#example1').DataTable()
+        $('#example2').DataTable({
+          'paging': true,
+          'lengthChange': false,
+          'searching': false,
+          'ordering': true,
+          'info': true,
+          'autoWidth': false
+        })
+        $('#example3').DataTable({
+          'paging': false,
+          'scrollY': 300
+        })
+        $('#example4').DataTable({
+          'paging': false,
+          'searching': false,
+          'scrollY': 300
+
+        })
+        $('#example5').DataTable({
+          'paging': false,
+          'searching': false,
+          'ordering': false,
+          'scrollY': 100
+
+        })
+        $('#example6').DataTable({
+          'paging': false,
+          'lengthChange': true,
+          'searching': false,
+          'ordering': false,
+          'info': true,
+          'autoWidth': true
+        })
+      })
+    </script>
 
 
-<script>
-  var myVar;
+    <script type="text/javascript">
+      $(function() {
+        //Date picker
+        $('.tgl').datepicker({
+            format: 'dd-M-yyyy',
+            autoclose: true
+          }),
+          $('.timepicker').timepicker({
+            showInputs: false,
+            timeFormat: 'HH:mm:ss',
+          })
+      })
+    </script>
 
-  function myFunction() {
-    myVar = setTimeout(showPage, 300);
-  }
 
-  function showPage() {
-    document.getElementById("loader").style.display = "none";
-    document.getElementById("myDiv").style.display = "block";
-  }
-</script>
+    <script>
+      var myVar;
+
+      function myFunction() {
+        myVar = setTimeout(showPage, 300);
+      }
+
+      function showPage() {
+        document.getElementById("loader").style.display = "none";
+        document.getElementById("myDiv").style.display = "block";
+      }
+    </script>
 
 
 
 
 </body>
-</html>    
+
+</html>
