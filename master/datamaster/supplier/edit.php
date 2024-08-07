@@ -36,12 +36,12 @@ if (isset($_POST["update"])) {
 
 if ($_GET["supplierid"] != "") {
 	$sql_user = "SELECT SupplierID, NamaSupplier, Alamat, NoTelp, RecUser
-				FROM ms_supplier a WHERE a.SupplierID = '" . $_GET['supplierid'] . "' ";
+				FROM ms_supplier  WHERE SupplierID = '" . $_GET['supplierid'] . "' ";
 	$data_user = $sqlLib->select($sql_user);
 	$_POST['namasupplier'] = $data_user[0]['NamaSupplier'];
 	$_POST['alamat']   = $data_user[0]['Alamat'];
-	$_POST['Notelp']  = $data_user[0]['NoTelp'];
-	$_POST['supplierid']  = $data_user[0]['BarangID'];
+	$_POST['notelp']  = $data_user[0]['NoTelp'];
+	$_POST['supplierid']  = $data_user[0]['SupplierID'];
 }
 
 
